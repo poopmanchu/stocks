@@ -28,7 +28,7 @@
         width: 12%;
         padding: 2px 4px 2px 0px;
       }
-      .stock-price, .stock-change, .stock-change-pct, .stock-mkt-cap {
+      .stock-price, .stock-change, .stock-change-pct, .stock-mkt-cap, .stock-pe-ratio {
         width: 22%;
         text-align: right;
         padding: 2px 4px;
@@ -36,6 +36,7 @@
       @media (max-width: 576px) {
         table { margin-bottom: 3em; }
         .stock-mkt-cap { display: none; }
+        .stock-pe-ratio { display: none; }
         .stock-symbol { width: 16%; }
         .stock-price, .stock-change, .stock-change-pct { width: 28%; }
         td.stock-symbol, td.stock-price, td.stock-change, td.stock-change-pct {
@@ -100,6 +101,7 @@
                 <th class="stock-change">Change</th>
                 <th class="stock-change-pct">Change%</th>
                 <th class="stock-mkt-cap">Mkt Cap</th>
+                <th class="stock-pe-ratio">P/E Ratio</th>
               </tr>
             </thead>
           `
@@ -116,6 +118,7 @@
               <td class="stock-change"></td>
               <td class="stock-change-pct"></td>
               <td class="stock-mkt-cap"></td>
+              <td class="stock-pe-ratio"></td>
             </tr>
           `
 
