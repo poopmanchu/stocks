@@ -146,7 +146,7 @@
       }
 
       function updateDataForBatch(symbols, addTitle) {
-        let filters = ['latestPrice', 'change', 'changePercent', 'marketCap'];
+        let filters = ['latestPrice', 'change', 'changePercent', 'marketCap', 'peRatio'];
         if (addTitle) filters.push('companyName');
         let url = `${BASE_URL}?types=quote&symbols=${symbols.join(',')}&filter=${filters.join(',')}`;
 
@@ -159,6 +159,7 @@
             let formattedChange = data.quote.change.toLocaleString('en', {'minimumFractionDigits': 2});
             let formattedChangePercent = (data.quote.changePercent * 100).toFixed(1) + '%';
             let formattedMarketCap = formatMarketCap(data.quote.marketCap);
+            let formattedPERatio = data.quote.peRatio.toFixed(2);
             let rgbColor = data.quote.changePercent > 0 ? '0,255,0' : '255,0,0';
             let rgbOpacity = Math.min(Math.abs(data.quote.changePercent) * 20, 1);
 
@@ -179,6 +180,11 @@
 
             document.querySelectorAll(`[data-symbol="${symbol}"] .stock-mkt-cap`).forEach(e => {
               e.innerHTML = formattedMarketCap;
+              e.setAttribute('style', `background-color: rgba(${rgbColor}, ${rgbOpacity})`);
+            });
+            
+            document.querySelectorAll(`[data-symbol="${symbol}"] .stock-pe-ratio`).forEach(e => {
+              e.innerHTML = formattedPERatio;
               e.setAttribute('style', `background-color: rgba(${rgbColor}, ${rgbOpacity})`);
             });
 
