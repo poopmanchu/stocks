@@ -149,7 +149,7 @@
       }
 
       function updateDataForBatch(symbols, addTitle) {
-        let filters = ['latestPrice', 'change', 'changePercent', 'marketCap', 'peRatio'];
+        let filters = ['latestPrice', 'change', 'changePercent', 'marketCap', 'peRatioHigh'];
         if (addTitle) filters.push('companyName');
         let url = `${BASE_URL}?types=quote&symbols=${symbols.join(',')}&filter=${filters.join(',')}`;
 
