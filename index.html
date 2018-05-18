@@ -16,7 +16,7 @@
       .stocks-container {
         margin-bottom: 1.5em;
         width: 100%;
-        max-width: 600px;
+        max-width: 700px;
       }
       .stocks-container a { text-decoration: none; }
       table {
@@ -29,7 +29,7 @@
         padding: 2px 4px 2px 0px;
       }
       .stock-price, .stock-change, .stock-change-pct, .stock-mkt-cap, .stock-pe-ratio {
-        width: 22%;
+        width: 17%;
         text-align: right;
         padding: 2px 4px;
       }
@@ -101,7 +101,7 @@
                 <th class="stock-change">Change</th>
                 <th class="stock-change-pct">Change%</th>
                 <th class="stock-mkt-cap">Mkt Cap</th>
-                <th class="stock-pe-ratio">PE Ratio</th>
+                <th class="stock-pe-ratio">P/E Ratio</th>
               </tr>
             </thead>
           `
@@ -149,7 +149,7 @@
       }
 
       function updateDataForBatch(symbols, addTitle) {
-        let filters = ['latestPrice', 'change', 'changePercent', 'marketCap', 'peRatioHigh'];
+        let filters = ['latestPrice', 'change', 'changePercent', 'marketCap', 'peRatio'];
         if (addTitle) filters.push('companyName');
         let url = `${BASE_URL}?types=quote&symbols=${symbols.join(',')}&filter=${filters.join(',')}`;
 
@@ -162,7 +162,10 @@
             let formattedChange = data.quote.change.toLocaleString('en', {'minimumFractionDigits': 2});
             let formattedChangePercent = (data.quote.changePercent * 100).toFixed(1) + '%';
             let formattedMarketCap = formatMarketCap(data.quote.marketCap);
-            let formattedPERatio = data.quote.peRatioHigh.toFixed(2);
+            let formattedPERatio = "N/A";
+            if (data.quote.peRatio) {
+            	formattedPERatio = data.quote.peRatio.toFixed(2);
+            }
             let rgbColor = data.quote.changePercent > 0 ? '0,255,0' : '255,0,0';
             let rgbOpacity = Math.min(Math.abs(data.quote.changePercent) * 20, 1);
 
