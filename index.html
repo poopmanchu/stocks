@@ -164,7 +164,7 @@
             let formattedMarketCap = formatMarketCap(data.quote.marketCap);
             let formattedPERatio = "N/A";
             if (data.quote.peRatio) {
-            	formattedPERatio = data.quote.peRatio.toFixed(2);
+            	formattedPERatio = data.quote.peRatio.toFixed(1);
             }
             let rgbColor = data.quote.changePercent > 0 ? '0,255,0' : '255,0,0';
             let rgbOpacity = Math.min(Math.abs(data.quote.changePercent) * 20, 1);
